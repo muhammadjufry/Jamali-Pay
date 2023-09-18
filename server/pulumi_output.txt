@@ -1,0 +1,9 @@
+  + appSyncID       : "houypphvenh4pjtmcorvopapba"
+  + dynamoID        : "users-50d467f"
+  + graphQLEndpoint : {
+      + GRAPHQL : "https://fgphmm3upbcorkwv73zmtkev2e.appsync-api.eu-west-1.amazonaws.com/graphql"
+      + REALTIME: "wss://fgphmm3upbcorkwv73zmtkev2e.appsync-realtime-api.eu-west-1.amazonaws.com/graphql"
+    }
+  + identityPoolID  : "eu-west-1:f0884440-6a1a-47db-80d6-0ce1180aac6d"
+  + userpoolClientID: "79s0l6pmgvvi2467qfqvv3khpd"
+  + userpoolID      : "eu-west-1_UQ6VlQbYe"

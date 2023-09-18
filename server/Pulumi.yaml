@@ -1,0 +1,3 @@
+name: jamalipay-aws-server
+runtime: nodejs
+description: A minimal AWS TypeScript Jamali Pay server
