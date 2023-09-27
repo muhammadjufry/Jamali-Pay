@@ -156,7 +156,9 @@ export default function Header({ userData }: Props) {
       >
         <div className="flex lg:flex-1">
           <Link href="/" passHref>
-            <h1 className="text-2xl font-semibold">Jamali Pay</h1>
+            <h1 className="text-2xl font-bold">
+              Jamali <span className="">Pay</span>
+            </h1>
           </Link>
         </div>
         <div className="flex lg:hidden">
@@ -231,7 +233,7 @@ export default function Header({ userData }: Props) {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
-        <div className="flex lg:flex-1 justify-end">
+        <div className="hidden lg:flex lg:flex-1 justify-end">
           {!userData ? (
             <div className="flex items-center gap-6">
               <Link
@@ -251,7 +253,7 @@ export default function Header({ userData }: Props) {
             </div>
           ) : (
             <div className="flex items-center gap-6">
-              <span className="cursor-pointer">{userData.username}</span>
+              <Link href="/dashboard">{userData.username}</Link>
               <button
                 onClick={() => logout()}
                 className="text-sm font-semibold leading-6 text-gray-900 bg-blue-600 hover:bg-blue-700 border border-transparent text-white font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white transition py-1 px-3 dark:focus:ring-offset-gray-800"
@@ -272,14 +274,13 @@ export default function Header({ userData }: Props) {
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <Link href="/">
-              <h1 className="text-2xl font-semibold">Jamali Pay</h1>
+              <h1 className="text-2xl font-bold">Jamali Pay</h1>
             </Link>
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <span className="sr-only">Close menu</span>
               <XMarkIcon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
@@ -387,21 +388,35 @@ export default function Header({ userData }: Props) {
                   Pricing
                 </Link>
               </div>
-              <div className="py-6 flex gap-4 items-center">
-                <Link
-                  href="signup"
-                  passHref
-                  className="text-sm font-semibold leading-6 text-gray-900 bg-blue-600 hover:bg-blue-700 border border-transparent text-white font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white transition py-1 px-3 dark:focus:ring-offset-gray-800"
-                >
-                  Log in
-                </Link>
-                <Link
-                  href="login"
-                  passHref
-                  className="text-sm font-semibold leading-6 text-gray-900 bg-blue-600 hover:bg-blue-700 border border-transparent text-white font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white transition py-1 px-3 dark:focus:ring-offset-gray-800"
-                >
-                  Sign Up
-                </Link>
+              <div className="lg:hidden flex py-6">
+                {!userData ? (
+                  <div className="flex items-center gap-6">
+                    <Link
+                      href="/signup"
+                      passHref
+                      className="text-sm font-semibold leading-6 text-gray-900 bg-blue-600 hover:bg-blue-700 border border-transparent text-white font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white transition py-1 px-3 dark:focus:ring-offset-gray-800"
+                    >
+                      Sign Up
+                    </Link>
+                    <Link
+                      href="/login"
+                      passHref
+                      className="text-sm font-semibold leading-6 text-gray-900 bg-blue-600 hover:bg-blue-700 border border-transparent text-white font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white transition py-1 px-3 dark:focus:ring-offset-gray-800"
+                    >
+                      Login
+                    </Link>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-6">
+                    <Link href="/dashboard">{userData.username}</Link>
+                    <button
+                      onClick={() => logout()}
+                      className="text-sm font-semibold leading-6 text-gray-900 bg-blue-600 hover:bg-blue-700 border border-transparent text-white font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white transition py-1 px-3 dark:focus:ring-offset-gray-800"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </div>

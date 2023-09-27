@@ -14,6 +14,7 @@ function Page({}: Props) {
   const [lastName, setLastName] = useState({ value: "", isValid: true });
   const [email, setEmail] = useState({ value: "", isValid: true });
   const [password, setPassword] = useState({ value: "", isValid: true });
+  const [error, setError] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -41,21 +42,25 @@ function Page({}: Props) {
     e.preventDefault();
     if (!firstName.value) {
       setFirstName({ value: "", isValid: false });
+      setError("Firstname should not empty!");
       return;
     }
 
     if (!lastName.value) {
       setLastName({ value: "", isValid: false });
+      setError("Lastname should not empty!");
       return;
     }
 
     if (!email.value) {
       setEmail({ value: "", isValid: false });
+      setError("Email({  should not empty!");
       return;
     }
 
     if (!password.value) {
       setPassword({ value: "", isValid: false });
+      setError("Password should not empty!");
       return;
     }
 
@@ -70,13 +75,13 @@ function Page({}: Props) {
           name: `${firstName.value} ${lastName.value}`,
         },
       });
+      setError("");
 
-      // if (typeof window !== "undefined") {
-      //   localStorage.setItem("pending_verification_email", email.value);
-      // }
+      localStorage.setItem("pending_verification_email", email.value);
 
-      router.push(`/verify?pending_verification_email=${email.value}`);
-    } catch (error) {
+      router.push("/account/verify");
+    } catch (error: any) {
+      setError(error.message);
       console.error(error);
     }
 
@@ -172,15 +177,17 @@ function Page({}: Props) {
                   <span className="sr-only">Password</span>
                 </label>
                 <input
-                  type="text"
-                  id="hs-hero-password-2"
+                  type="password"
                   className="py-3 px-4 block w-full focus:outline-none rounded-md text-sm border border-[#e5e7eb] focus:border-[#c5c7ca] sm:p-4"
                   placeholder="Password"
                   value={password.value}
                   onChange={setInput(setPassword)}
                 />
               </div>
-              <div className="grid">
+              <div className="flex flex-col gap-2">
+                {error.length > 0 && (
+                  <div className="text-red-500 text-[15px]">{error}</div>
+                )}
                 <button
                   type="submit"
                   className="py-3 px-4 justify-center rounded-md border border-transparent font-semibold bg-blue-500 text-white flex items-center gap-4 "

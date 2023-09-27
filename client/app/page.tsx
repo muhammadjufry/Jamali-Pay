@@ -16,7 +16,8 @@ export default function Home() {
 
   useEffect(() => {
     getUser();
-  }, []);
+    if (getUserData) console.log(getUserData);
+  }, [getUserData]);
   return (
     <>
       <Header userData={getUserData} />

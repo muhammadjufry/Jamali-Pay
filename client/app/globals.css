@@ -61,6 +61,47 @@
 
   }
 }
+
+@font-face {
+  font-family: "THICCCBOI";
+  src: url("/fonts/THICCCBOI-Thin.woff2");
+  font-weight: 100;
+}
+@font-face {
+  font-family: "THICCCBOI";
+  src: url("/fonts/THICCCBOI-Light.woff2");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "THICCCBOI";
+  src: url("/fonts/THICCCBOI-Regular.woff2");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "THICCCBOI";
+  src: url("/fonts/THICCCBOI-Medium.woff2");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "THICCCBOI";
+  src: url("/fonts/THICCCBOI-SemiBold.woff2");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "THICCCBOI";
+  src: url("/fonts/THICCCBOI-Bold.woff2");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "THICCCBOI";
+  src: url("/fonts/THICCCBOI-ExtraBold.woff2");
+  font-weight: 800;
+}
+@font-face {
+  font-family: "THICCCBOI";
+  src: url("/fonts/THICCCBOI-Black.woff2");
+  font-weight: 900;
+}
  
 @layer base {
   * {

@@ -88,13 +88,6 @@ function BanksTicker({}: Props) {
         alt="bank_logo_ins_22"
         width={96}
         height={96}
-        src="/bank-logos/ins_22-1.svg"
-        className="w-[96px] h-[96px] mr-4"
-      />
-      <Image
-        alt="bank_logo_ins_22"
-        width={96}
-        height={96}
         src="/bank-logos/ins_22.svg"
         className="w-[96px] h-[96px] mr-4"
       />

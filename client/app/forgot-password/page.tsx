@@ -3,12 +3,14 @@ import Modal from "@/components/Modal";
 import React, { useEffect, useState } from "react";
 import { Auth } from "aws-amplify";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import useModal from "@/hooks/useModal";
 type Props = {};
 
 function Page({}: Props) {
+  const modal = useModal();
   const [isOpen, setIsOpen] = useState(false);
   const [timeRedirect, setTimeRedirect] = useState(3);
-  const [key, setKey] = useState(0);
   const [email, setEmail] = useState({ value: "", isValid: true });
   const router = useRouter();
   useEffect(() => {
@@ -30,29 +32,34 @@ function Page({}: Props) {
     e.preventDefault();
     try {
       await Auth.forgotPassword(email.value);
-      setIsOpen(true);
-      setKey(key + 1);
+      localStorage.setItem("pending_reset_password_email", email.value);
+      modal.onOpen();
       router.push("/reset-password");
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
     }
   };
   return (
     <>
-      {isOpen && (
-        <Modal
-          key={key}
-          open={isOpen}
-          iconType="success"
-          title="Reset password link has been sent!"
-          desc="Reset password link has been sent to your email"
-          buttons={[]}
-        />
-      )}
-      <div className="h-screen flex items-center dark:bg-slate-900 bg-gray-100">
+      <Modal
+        isOpen={modal.isOpen}
+        onClose={modal.onClose}
+        iconType="success"
+        title="Reset password link has been sent!"
+        desc="Reset password link has been sent to your email"
+        buttons={[]}
+      />
+      <div className="h-screen flex items-center">
         <div className="w-full max-w-md mx-auto p-6 mt-12">
-          <div className="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
-            <div className="p-4 sm:p-7">
+          <Image
+            src="/logo.png"
+            width={100}
+            height={100}
+            className="mx-auto"
+            alt="Jamali Pay"
+          />
+          <div className="mt-7 bg-white rounded-xl border shadow-md dark:bg-gray-800 dark:border-gray-700">
+            <div className="p-7">
               <div className="text-center">
                 <h1 className="block text-2xl font-bold text-gray-800 dark:text-white">
                   Forgot Password
@@ -60,7 +67,6 @@ function Page({}: Props) {
               </div>
               <form className="mt-8" onSubmit={resetPassword}>
                 <div className="grid gap-y-4">
-                  {/* Form Group */}
                   <div>
                     <label
                       htmlFor="email"
@@ -111,7 +117,7 @@ function Page({}: Props) {
             </div>
           </div>
         </div>
-      </div>{" "}
+      </div>
     </>
   );
 }

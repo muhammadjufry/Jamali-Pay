@@ -12,6 +12,7 @@ function Page({}: Props) {
   const [email, setEmail] = useState({ value: "", isValid: true });
   const [password, setPassword] = useState({ value: "", isValid: true });
   const router = useRouter();
+  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -38,11 +39,13 @@ function Page({}: Props) {
     e.preventDefault();
     if (!email.value) {
       setEmail({ value: "", isValid: false });
+      setError("Email should not empty!");
       return;
     }
 
     if (!password.value) {
       setPassword({ value: "", isValid: false });
+      setError("Password should not empty!");
       return;
     }
 
@@ -50,8 +53,10 @@ function Page({}: Props) {
 
     try {
       await Auth.signIn({ username: email.value, password: password.value });
+      setError("");
       router.push("/");
-    } catch (error) {
+    } catch (error: any) {
+      setError(error.message);
       console.error(error);
     }
 
@@ -115,15 +120,22 @@ function Page({}: Props) {
                   <span className="sr-only">Password</span>
                 </label>
                 <input
-                  type="text"
-                  id="hs-hero-password-2"
+                  type="password"
                   className="py-3 px-4 block w-full focus:outline-none rounded-md text-sm border border-[#e5e7eb] focus:border-[#c5c7ca] sm:p-4"
                   placeholder="Password"
                   value={password.value}
                   onChange={setInput(setPassword)}
                 />
+                <Link href="/forgot-password" className="mt-2 block">
+                  <span className="text-blue-500 hover:text-blue-600 text-[15px]">
+                    Forgot Password?
+                  </span>
+                </Link>
               </div>
-              <div className="grid">
+              <div className="flex flex-col gap-2">
+                {error.length > 0 && (
+                  <div className="text-red-500 text-[15px]">{error}</div>
+                )}
                 <button
                   type="submit"
                   className="py-3 px-4 flex justify-center items-center gap-4 rounded-md border border-transparent font-semibold bg-blue-500 text-white"
@@ -143,7 +155,7 @@ function Page({}: Props) {
             <p className="mt-4 text-gray-500">
               Do not have an account?
               <Link href="/signup">
-                <span className="text-blue-500 hover:text-blue-600">
+                <span className="text-blue-500 hover:text-blue-600 text-[15px]">
                   {" "}
                   Sign up
                 </span>

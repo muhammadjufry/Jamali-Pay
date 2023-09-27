@@ -6,11 +6,12 @@ import {
   IconInfoCircleFilled,
   IconX,
 } from "@tabler/icons-react";
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 type Props = {
-  open: boolean;
+  isOpen?: boolean;
+  onClose: () => void;
   iconType: "success" | "warning" | "error" | "info";
   title: string;
   desc: string;
@@ -21,8 +22,22 @@ type Props = {
   }[];
 };
 
-function Modal({ open, iconType, title, desc, buttons }: Props) {
-  const [isOpen, setIsOpen] = useState(open);
+function Modal({ isOpen, onClose, iconType, title, desc, buttons }: Props) {
+  const [showModal, setShowModal] = useState(isOpen);
+
+  useEffect(() => {
+    setShowModal(isOpen);
+  }, [isOpen]);
+
+  const handleClose = useCallback(() => {
+    setShowModal(false);
+    setTimeout(() => {
+      onClose();
+    }, 300);
+  }, [onClose]);
+
+  if (!isOpen) return null;
+
   const bgColorClass = (() => {
     switch (iconType) {
       case "success":
@@ -37,15 +52,12 @@ function Modal({ open, iconType, title, desc, buttons }: Props) {
         return "bg-gray-100 dark:bg-gray-700";
     }
   })();
-  const checkIsOpen = isOpen === true ? "flex" : "hidden";
   return (
     <>
       <div
-        id="hs-sign-out-alert"
-        className={twMerge(
-          "hs-overlay w-screen h-screen fixed flex items-center justify-center z-[60] overflow-x-hidden overflow-y-auto bg-[#00000033]",
-          checkIsOpen
-        )}
+        className={`hs-overlay w-screen h-screen fixed flex items-center justify-center z-[60] overflow-x-hidden overflow-y-auto bg-[#00000033]  ${
+          showModal ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
+        }`}
       >
         <div className="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto">
           <div className="relative flex flex-col bg-white shadow-lg rounded-xl dark:bg-gray-800">
@@ -53,14 +65,12 @@ function Modal({ open, iconType, title, desc, buttons }: Props) {
               <button
                 type="button"
                 className="inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded-md text-gray-500 hover:text-gray-400"
-                onClick={() => setIsOpen(false)}
+                onClick={handleClose}
               >
-                <span className="sr-only">Close</span>
                 <IconX className="w-3.5 h-3.5" />
               </button>
             </div>
             <div className="p-4 sm:p-10 text-center overflow-y-auto">
-              {/* Icon */}
               <span
                 className={twMerge(
                   "mb-4 inline-flex justify-center items-center w-[62px] h-[62px] rounded-full",

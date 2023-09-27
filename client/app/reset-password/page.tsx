@@ -1,12 +1,15 @@
 "use client";
 import Modal from "@/components/Modal";
 import React, { useEffect, useState } from "react";
-import { redirect, useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Auth } from "aws-amplify";
+import useModal from "@/hooks/useModal";
+import Link from "next/link";
+import Image from "next/image";
 
 type Props = {};
-
 function Page({}: Props) {
+  const modal = useModal();
   const [isOpen, setIsOpen] = useState(false);
   const [key, setKey] = useState(0);
   const [timeRedirect, setTimeRedirect] = useState(3);
@@ -16,10 +19,13 @@ function Page({}: Props) {
     isValid: true,
   });
   const router = useRouter();
-  const urlParams = useSearchParams();
-  const email = urlParams.get("email");
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
+    if (typeof window !== null) {
+      setEmail(localStorage.getItem("pending_reset_password_email") || "");
+    }
     if (timeRedirect === 0) {
       router.push("/login");
     }
@@ -50,10 +56,13 @@ function Page({}: Props) {
         confirmationCode.value,
         newPassword.value
       );
+      localStorage.removeItem("pending_reset_password_email");
+      modal.onOpen();
       setIsOpen(true);
       setKey(key + 1);
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
+      setError("Invalid code provided, please");
     }
   };
 
@@ -67,16 +76,24 @@ function Page({}: Props) {
       {isOpen && (
         <Modal
           key={key}
-          open={isOpen}
+          isOpen={modal.isOpen}
+          onClose={modal.onClose}
           iconType="success"
           title="Your Password has been changed!"
           desc={`You will be redirected to the login page in ${timeRedirect} secs.`}
           buttons={[]}
         />
       )}
-      <div className="h-screen flex items-center dark:bg-slate-900 bg-gray-100">
+      <div className="h-screen flex items-center">
         <div className="w-full max-w-md mx-auto p-6 mt-12">
-          <div className="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
+          <Image
+            src="/logo.png"
+            width={100}
+            height={100}
+            className="mx-auto"
+            alt="Jamali Pay"
+          />
+          <div className="mt-7 bg-white rounded-xl border shadow-md dark:bg-gray-800 dark:border-gray-700">
             <div className="p-4 sm:p-7">
               <div className="text-center">
                 <h1 className="block text-2xl font-bold text-gray-800 dark:text-white">
@@ -148,6 +165,17 @@ function Page({}: Props) {
                       </div>
                     </div>
                   </div>
+                  {error && (
+                    <span className="text-red-500 text-sm dark:text-red-400 mt-2 block mb-2 w-full text-gray-700 dark:text-gray-400">
+                      {error + " "}
+                      <Link
+                        href="/forgot-password"
+                        className=" text-blue-500 hover:underline dark:text-blue-400"
+                      >
+                        request code again.
+                      </Link>
+                    </span>
+                  )}
                   {/* End Form Group */}
                   <button
                     type="submit"
