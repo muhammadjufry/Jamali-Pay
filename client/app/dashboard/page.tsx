@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import Gross_Volumes_Chart from "@/components/dashboard/Gross_Volumes_Chart";
 import { useGetUser } from "@/hooks/useSyncUser";
 import Header from "@/components/dashboard/Header";
-import Container from "@/components/Container";
 import { useRouter } from "next/navigation";
 import { Auth } from "aws-amplify";
 import Sidebar from "@/components/dashboard/Sidebar";
@@ -21,8 +20,6 @@ function Dashboard() {
       router.push("/login");
     }
   };
-
-  useEffect(() => {}, []);
 
   useEffect(() => {
     getUser();

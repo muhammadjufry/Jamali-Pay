@@ -1,4 +1,7 @@
-import ReactApexChart from "react-apexcharts";
+import dynamic from "next/dynamic";
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
+  ssr: false,
+});
 import { ApexOptions } from "apexcharts";
 import dummyData from "./DummyData";
 function LineChart({ width, height }: { width: number; height: number }) {
@@ -120,12 +123,14 @@ function LineChart({ width, height }: { width: number; height: number }) {
       </div>
       {/* Chart built with Chart.js 3 */}
       <div className="grow">
-        <ReactApexChart
-          options={options}
-          series={series}
-          type="area"
-          height={height}
-        />
+        {typeof window !== "undefined" && (
+          <ReactApexChart
+            options={options}
+            series={series}
+            type="area"
+            width={500}
+          />
+        )}
       </div>
     </>
   );

@@ -23,7 +23,7 @@ function Page({}: Props) {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (typeof window !== null) {
+    if (typeof window !== "undefined") {
       setEmail(localStorage.getItem("pending_reset_password_email") || "");
     }
     if (timeRedirect === 0) {

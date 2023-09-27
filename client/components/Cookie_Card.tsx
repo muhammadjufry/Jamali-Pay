@@ -7,7 +7,7 @@ type Props = {};
 function Cookie_Card({}: Props) {
   const [isAllowedCookie, setIsAllowedCookie] = useState("");
   useEffect(() => {
-    if (typeof window !== null) {
+    if (typeof window !== "undefined") {
       const isCookieAllowed = localStorage.getItem("is_cookie_allowed");
       if (isCookieAllowed === "true") {
         setIsAllowedCookie("true");
