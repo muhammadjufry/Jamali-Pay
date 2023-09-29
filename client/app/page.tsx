@@ -1,5 +1,4 @@
 "use client";
-import Cookie_Card from "@/components/Cookie_Card";
 import Feature from "@/components/Feature";
 import NavFeature from "@/components/Nav_Feature";
 import Footer from "@/components/Footer";
@@ -32,7 +31,6 @@ export default function Home() {
         imgWidth={701}
         imgHeight={545}
       />
-      <Cookie_Card />
       <Feature
         infoStartFrom="left"
         featureTitle="We Supported all banks in the world"

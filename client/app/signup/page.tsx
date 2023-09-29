@@ -81,8 +81,15 @@ function Page({}: Props) {
 
       router.push("/account/verify");
     } catch (error: any) {
-      setError(error.message);
       console.error(error);
+      if (
+        error.message ==
+        "Password does not conform to policy: Password must have uppercase characters"
+      ) {
+        setError("New Password must have uppercase characters");
+      } else {
+        setError(error.message);
+      }
     }
 
     setIsLoading(false);

@@ -27,6 +27,7 @@ function Page({}: Props) {
       setEmail(localStorage.getItem("pending_verification_email") || "");
     }
     if (seconds === 0) {
+      modal.onClose();
       router.push("/login");
     }
     if (seconds > 0 && isOpen === true) {

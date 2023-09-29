@@ -23,7 +23,7 @@ function Hero({ title, desc, buttons, img, imgWidth, imgHeight }: Props) {
         {/* Grid */}
         <div className="grid lg:grid-cols-7 lg:gap-x-8 xl:gap-x-12 lg:items-center">
           <div className="lg:col-span-3">
-            <h1 className="block font-bold text-gray-800 text-3xl md:text-5xl dark:text-white !leading-[65px]">
+            <h1 className="block font-bold text-gray-800 text-3xl md:text-5xl dark:text-white md:!leading-[65px]">
               {title}
             </h1>
             <p className="mt-6 text-lg text-gray-800 leading-8 dark:text-gray-400">

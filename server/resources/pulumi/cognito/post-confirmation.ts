@@ -34,7 +34,7 @@ const handler: aws.lambda.Callback<any, unknown> = async (
     });
 
     callback(null, event);
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
     callback(error);
   }

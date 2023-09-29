@@ -5,6 +5,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { Auth } from "aws-amplify";
 import { useRouter } from "next/navigation";
+import { useGetUser } from "@/hooks/useSyncUser";
 
 type Props = {};
 
@@ -14,20 +15,14 @@ function Page({}: Props) {
   const router = useRouter();
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const { getUser, getUserData } = useGetUser();
 
   useEffect(() => {
-    const checkUser = async () => {
-      try {
-        const user = await Auth.currentAuthenticatedUser();
-        if (user) {
-          router.push("/");
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    checkUser();
-  }, [router]);
+    getUser();
+    if (getUserData) {
+      router.push("/");
+    }
+  }, [getUserData]);
 
   const setInput =
     (setter: (inp: { value: string; isValid: boolean }) => void) =>

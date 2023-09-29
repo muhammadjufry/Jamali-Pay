@@ -20,6 +20,7 @@ function Page({}: Props) {
 
   useEffect(() => {
     if (seconds === 0) {
+      modal.onClose();
       router.push("/account/verify");
     }
     if (seconds > 0 && isOpen === true) {

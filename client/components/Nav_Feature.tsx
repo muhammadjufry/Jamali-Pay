@@ -8,20 +8,13 @@ function Feature_Section_2({}: Props) {
     <>
       <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
         {/* Tab Nav */}
-        <h2 className="text-3xl font-bold text-center mb-6">We offer</h2>
-        <nav
-          className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4"
+        <h2 className="text-3xl font-bold md:text-center mb-6">We offer</h2>
+        <ul
+          className="max-w-6xl mx-auto flex gap-4 flex-col lg:flex-row items-center justify-center"
           aria-label="Tabs"
           role="tablist"
         >
-          <button
-            type="button"
-            className="hs-tab-active:bg-gray-100 hs-tab-active:hover:border-transparent hover:bg-gray-100 p-3 md:p-5 rounded-xl dark:hs-tab-active:bg-white/[.05] dark:hover:bg-gray-700 active"
-            id="tabs-with-card-item-1"
-            data-hs-tab="#tabs-with-card-1"
-            aria-controls="tabs-with-card-1"
-            role="tab"
-          >
+          <li className="hs-tab-active:bg-gray-100 hs-tab-active:hover:border-transparent hover:bg-gray-100 p-3 md:p-5 rounded-xl dark:hs-tab-active:bg-white/[.05] dark:hover:bg-gray-700 active cursor-pointer">
             <span className="flex flex-col text-left gap-4">
               <span className="w-[30px] h-[30px]">
                 <IconBolt className="w-[30px] h-[30px]" />
@@ -36,15 +29,8 @@ function Feature_Section_2({}: Props) {
                 </span>
               </span>
             </span>
-          </button>
-          <button
-            type="button"
-            className="hs-tab-active:bg-gray-100 hs-tab-active:hover:border-transparent hover:bg-gray-100 p-3 md:p-5 rounded-xl dark:hs-tab-active:bg-white/[.05] dark:hover:bg-gray-700 active"
-            id="tabs-with-card-item-1"
-            data-hs-tab="#tabs-with-card-1"
-            aria-controls="tabs-with-card-1"
-            role="tab"
-          >
+          </li>
+          <li className="hs-tab-active:bg-gray-100 hs-tab-active:hover:border-transparent hover:bg-gray-100 p-3 md:p-5 rounded-xl dark:hs-tab-active:bg-white/[.05] dark:hover:bg-gray-700 active cursor-pointer">
             <span className="flex flex-col text-left gap-4">
               <span className="w-[30px] h-[30px]">
                 <IconShieldLock className="w-[30px] h-[30px]" />
@@ -58,15 +44,8 @@ function Feature_Section_2({}: Props) {
                 </span>
               </span>
             </span>
-          </button>
-          <button
-            type="button"
-            className="hs-tab-active:bg-gray-100 hs-tab-active:hover:border-transparent hover:bg-gray-100 p-3 md:p-5 rounded-xl dark:hs-tab-active:bg-white/[.05] dark:hover:bg-gray-700 active"
-            id="tabs-with-card-item-1"
-            data-hs-tab="#tabs-with-card-1"
-            aria-controls="tabs-with-card-1"
-            role="tab"
-          >
+          </li>
+          <li className="hs-tab-active:bg-gray-100 hs-tab-active:hover:border-transparent hover:bg-gray-100 p-3 md:p-5 rounded-xl dark:hs-tab-active:bg-white/[.05] dark:hover:bg-gray-700 active cursor-pointer">
             <span className="flex flex-col text-left gap-4">
               <span className="w-[30px] h-[30px]">
                 <IconUserBolt className="w-[30px] h-[30px]" />
@@ -81,8 +60,8 @@ function Feature_Section_2({}: Props) {
                 </span>
               </span>
             </span>
-          </button>
-        </nav>
+          </li>
+        </ul>
         {/* End Tab Nav */}
       </div>
       {/* End Features */}

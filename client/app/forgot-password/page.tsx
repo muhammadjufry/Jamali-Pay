@@ -15,7 +15,8 @@ function Page({}: Props) {
   const router = useRouter();
   useEffect(() => {
     if (timeRedirect === 0) {
-      router.push("/login");
+      modal.onClose();
+      router.push("/reset-password");
     }
     setInterval(() => {
       if (timeRedirect > 0 && isOpen === true) {
@@ -34,7 +35,7 @@ function Page({}: Props) {
       await Auth.forgotPassword(email.value);
       localStorage.setItem("pending_reset_password_email", email.value);
       modal.onOpen();
-      router.push("/reset-password");
+      setIsOpen(true);
     } catch (error: any) {
       console.log(error);
     }
@@ -46,7 +47,7 @@ function Page({}: Props) {
         onClose={modal.onClose}
         iconType="success"
         title="Reset password link has been sent!"
-        desc="Reset password link has been sent to your email"
+        desc={`Reset password link has been sent to your email. You will be redirect to reset password page after ${timeRedirect} second`}
         buttons={[]}
       />
       <div className="h-screen flex items-center">

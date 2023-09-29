@@ -7,7 +7,7 @@ function Footer({}: Props) {
   return (
     <footer className="w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto">
       {/* Grid */}
-      <div className="flex flex-wrap gap-14 justify-between w-full">
+      <div className="flex flex-col md:flex-row gap-8 md:gap-14 justify-between w-full">
         <div className="col-span-full lg:col-span-1 lg:block">
           <Link
             className="flex-none text-xl font-semibold dark:text-white"
@@ -20,7 +20,7 @@ function Footer({}: Props) {
             © 2023 Jamali Pay.
           </p>
         </div>
-        <div className="flex gap-16 mb-10">
+        <div className="flex flex-col md:flex-row md:gap-16 gap-8 mb-10">
           <div>
             <h4 className="text-xs font-semibold text-gray-900 uppercase dark:text-gray-100">
               Company

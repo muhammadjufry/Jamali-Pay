@@ -11,7 +11,6 @@ type Props = {};
 function Page({}: Props) {
   const modal = useModal();
   const [isOpen, setIsOpen] = useState(false);
-  const [key, setKey] = useState(0);
   const [timeRedirect, setTimeRedirect] = useState(3);
   const [newPassword, setNewPassword] = useState({ value: "", isValid: true });
   const [confirmationCode, setNewConfirmationCode] = useState({
@@ -27,6 +26,7 @@ function Page({}: Props) {
       setEmail(localStorage.getItem("pending_reset_password_email") || "");
     }
     if (timeRedirect === 0) {
+      modal.onClose();
       router.push("/login");
     }
     setInterval(() => {
@@ -59,10 +59,16 @@ function Page({}: Props) {
       localStorage.removeItem("pending_reset_password_email");
       modal.onOpen();
       setIsOpen(true);
-      setKey(key + 1);
     } catch (error: any) {
       console.log(error);
-      setError("Invalid code provided, please");
+      if (
+        error.message ==
+        "Password does not conform to policy: Password must have uppercase characters"
+      ) {
+        setError("New Password must have uppercase characters");
+      } else {
+        setError("Invalid code provided, please");
+      }
     }
   };
 
@@ -75,12 +81,11 @@ function Page({}: Props) {
     <>
       {isOpen && (
         <Modal
-          key={key}
           isOpen={modal.isOpen}
           onClose={modal.onClose}
           iconType="success"
           title="Your Password has been changed!"
-          desc={`You will be redirected to the login page in ${timeRedirect} secs.`}
+          desc={`You will be redirected to the login page in ${timeRedirect} second.`}
           buttons={[]}
         />
       )}
@@ -143,7 +148,7 @@ function Page({}: Props) {
                     </label>
                     <div className="relative">
                       <input
-                        type="text"
+                        type="password"
                         id="password"
                         name="password"
                         className="py-3 px-4 block w-full focus:outline-none rounded-md text-sm border border-[#e5e7eb] focus:border-[#c5c7ca]"
@@ -168,12 +173,14 @@ function Page({}: Props) {
                   {error && (
                     <span className="text-red-500 text-sm dark:text-red-400 mt-2 block mb-2 w-full text-gray-700 dark:text-gray-400">
                       {error + " "}
-                      <Link
-                        href="/forgot-password"
-                        className=" text-blue-500 hover:underline dark:text-blue-400"
-                      >
-                        request code again.
-                      </Link>
+                      {error == "Invalid code provided, please" && (
+                        <Link
+                          href="/forgot-password"
+                          className=" text-blue-500 hover:underline dark:text-blue-400"
+                        >
+                          request code again.
+                        </Link>
+                      )}
                     </span>
                   )}
                   {/* End Form Group */}
