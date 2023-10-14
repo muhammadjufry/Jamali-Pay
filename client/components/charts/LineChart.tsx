@@ -4,7 +4,7 @@ const ReactApexChart = dynamic(() => import("react-apexcharts"), {
 });
 import { ApexOptions } from "apexcharts";
 import dummyData from "./DummyData";
-function LineChart({ width, height }: { width: number; height: number }) {
+function LineChart() {
   const series = [
     {
       name: "Payment Amount",
@@ -128,7 +128,7 @@ function LineChart({ width, height }: { width: number; height: number }) {
             options={options}
             series={series}
             type="area"
-            width={500}
+            height={300}
           />
         )}
       </div>

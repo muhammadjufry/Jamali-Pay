@@ -1,9 +1,9 @@
-  + appSyncID       : "houypphvenh4pjtmcorvopapba"
-  + dynamoID        : "users-50d467f"
+  + appSyncID       : "fqpfdgbignapba25jhdctaajda"
+  + dynamoID        : "users-5fd6c96"
   + graphQLEndpoint : {
-      + GRAPHQL : "https://fgphmm3upbcorkwv73zmtkev2e.appsync-api.eu-west-1.amazonaws.com/graphql"
-      + REALTIME: "wss://fgphmm3upbcorkwv73zmtkev2e.appsync-realtime-api.eu-west-1.amazonaws.com/graphql"
+      + GRAPHQL : "https://55x75ffb2nfkxiwujw5u725nxi.appsync-api.eu-west-1.amazonaws.com/graphql"
+      + REALTIME: "wss://55x75ffb2nfkxiwujw5u725nxi.appsync-realtime-api.eu-west-1.amazonaws.com/graphql"
     }
-  + identityPoolID  : "eu-west-1:f0884440-6a1a-47db-80d6-0ce1180aac6d"
-  + userpoolClientID: "79s0l6pmgvvi2467qfqvv3khpd"
-  + userpoolID      : "eu-west-1_UQ6VlQbYe"
+  + identityPoolID  : "eu-west-1:cf1c500d-f1f0-4cc3-94c6-9af3026f844a"
+  + userpoolClientID: "1qb1b4c5gl6ado94kcar39kauf"
+  + userpoolID      : "eu-west-1_1c5QU6mld"

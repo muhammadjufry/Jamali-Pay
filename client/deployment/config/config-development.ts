@@ -1,7 +1,7 @@
 /**
  * Add your hosted dev URL here
  */
-const HOSTED_URL = "https://main.dm1cyo2jikuuk.amplifyapp.com/";
+const HOSTED_URL = "http://localhost:3000";
 
 const configDevelopment = {
   HOSTED_URL,
@@ -14,11 +14,11 @@ const configDevelopment = {
   /**
    * Add the details from the Pulumi output here, after running 'pulumi up'
    */
-  USER_POOL_CLIENT_ID: "79s0l6pmgvvi2467qfqvv3khpd",
-  USER_POOL_ID: "eu-west-1_UQ6VlQbYe",
-  IDENTITY_POOL_ID: "eu-west-1:f0884440-6a1a-47db-80d6-0ce1180aac6d",
+  USER_POOL_CLIENT_ID: "1qb1b4c5gl6ado94kcar39kauf",
+  USER_POOL_ID: "eu-west-1_1c5QU6mld",
+  IDENTITY_POOL_ID: "eu-west-1:cf1c500d-f1f0-4cc3-94c6-9af3026f844a",
   GRAPHQL_ENDPOINT:
-    "https://fgphmm3upbcorkwv73zmtkev2e.appsync-api.eu-west-1.amazonaws.com/graphql",
+    "https://55x75ffb2nfkxiwujw5u725nxi.appsync-api.eu-west-1.amazonaws.com/graphql",
 };
 
 export default configDevelopment;

@@ -4,7 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { Auth } from "aws-amplify";
+import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth/lib-esm/types";
 import { useRouter } from "next/navigation";
+import { getProviders, signIn } from "next-auth/react";
 
 type Props = {};
 
@@ -95,6 +97,12 @@ function Page({}: Props) {
     setIsLoading(false);
   };
 
+  const [providers, setProviders] = useState<any>(null);
+
+  // Fetch providers on mount.
+  useEffect(() => {
+    getProviders().then((providers) => setProviders(providers));
+  }, []);
   return (
     <>
       {/* Hero */}
@@ -113,6 +121,7 @@ function Page({}: Props) {
               <button
                 type="button"
                 className="py-3 px-4 outline-none inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle"
+                onClick={() => signIn(providers["cognito_google"].id)}
               >
                 <Image
                   src="/icons/google.png"

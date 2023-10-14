@@ -11,7 +11,7 @@ function Gross_Volumes_Chart({}: Props) {
           Gross Volumes
         </h2>
       </header>
-      <LineChart width={595} height={248} />
+      <LineChart />
     </div>
   );
 }

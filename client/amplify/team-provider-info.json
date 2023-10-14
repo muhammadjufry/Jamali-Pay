@@ -1,23 +1,15 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-client-dev-13302-authRole",
-      "UnauthRoleArn": "arn:aws:iam::406695812622:role/amplify-client-dev-13302-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::406695812622:role/amplify-client-dev-13302-authRole",
-      "Region": "eu-north-1",
-      "DeploymentBucketName": "amplify-client-dev-13302-deployment",
-      "UnauthRoleName": "amplify-client-dev-13302-unauthRole",
-      "StackName": "amplify-client-dev-13302",
-      "StackId": "arn:aws:cloudformation:eu-north-1:406695812622:stack/amplify-client-dev-13302/d355f3f0-5534-11ee-aede-06be4a8f6576",
-      "AmplifyAppId": "dm1cyo2jikuuk"
-    },
-    "categories": {
-      "hosting": {
-        "amplifyhosting": {
-          "appId": "dm1cyo2jikuuk",
-          "type": "cicd"
-        }
-      }
+      "AuthRoleName": "amplify-jamalipay-dev-05757-authRole",
+      "UnauthRoleArn": "arn:aws:iam::406695812622:role/amplify-jamalipay-dev-05757-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::406695812622:role/amplify-jamalipay-dev-05757-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-jamalipay-dev-05757-deployment",
+      "UnauthRoleName": "amplify-jamalipay-dev-05757-unauthRole",
+      "StackName": "amplify-jamalipay-dev-05757",
+      "StackId": "arn:aws:cloudformation:eu-west-1:406695812622:stack/amplify-jamalipay-dev-05757/65eb4fc0-6a67-11ee-8e65-06e2146b8aab",
+      "AmplifyAppId": "d1i4ax5rvn6fv5"
     }
   }
 }
