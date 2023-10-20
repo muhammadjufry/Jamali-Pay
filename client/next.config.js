@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["images.unsplash.com", "images.yapily.com"],
+    dangerouslyAllowSVG: true,
+    domains: ["images.unsplash.com", "images.yapily.com", "cdn.builder.io"],
   },
 };
 
