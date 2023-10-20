@@ -12,8 +12,8 @@ const amplifyConfig = {
     userPoolWebClientId: config.USER_POOL_CLIENT_ID,
     oauth: {
       domain: "jamalipay.auth.eu-west-1.amazoncognito.com",
-      redirectSignIn: "http://localhost:3000/",
-      redirectSignOut: "http://localhost:3000/signout",
+      redirectSignIn: "https://main.dm1cyo2jikuuk.amplifyapp.com/",
+      redirectSignOut: "https://main.dm1cyo2jikuuk.amplifyapp.com/signout",
       scope: ["email", "openid", "profile"],
       responseType: "token",
     },
